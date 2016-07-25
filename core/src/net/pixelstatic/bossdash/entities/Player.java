@@ -41,6 +41,7 @@ public class Player extends SpriteEntity implements Collidable{
 
 		Vector2 v2 = new Vector2(v.x, v.y);
 		v2.sub(x, y);
+		
 		sprite.setRotation(v2.angle() - 90);
 
 		if(Gdx.input.isKeyPressed(Keys.W)) y += speed;
@@ -69,7 +70,7 @@ public class Player extends SpriteEntity implements Collidable{
 			if(bullets > 4) bullets = 4;
 
 			for(int i = 0;i < bullets;i ++){
-				shoot(sprite.getRotation() - bullets * 4 + i * 8);
+				shoot(3.5f+sprite.getRotation() - bullets * 4 + i * 8);
 			}
 
 		}

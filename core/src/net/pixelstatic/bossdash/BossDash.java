@@ -124,6 +124,7 @@ public class BossDash extends ApplicationAdapter{
 			}
 
 		}else{
+			if(bloom.getBloomIntensity() < 20)
 			bloom.setBloomIntesity(bloom.getBloomIntensity() + 0.1f);
 		}
 		if(shaketime > 0){
