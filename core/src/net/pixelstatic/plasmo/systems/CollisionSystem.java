@@ -1,7 +1,7 @@
-package net.pixelstatic.bossdash.systems;
+package net.pixelstatic.plasmo.systems;
 
-import net.pixelstatic.bossdash.entities.Collidable;
-import net.pixelstatic.bossdash.entities.Entity;
+import net.pixelstatic.plasmo.entities.Collidable;
+import net.pixelstatic.plasmo.entities.Entity;
 
 import com.badlogic.gdx.math.Rectangle;
 

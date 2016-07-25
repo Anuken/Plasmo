@@ -1,10 +1,10 @@
-package net.pixelstatic.bossdash;
+package net.pixelstatic.plasmo;
 
 import java.util.concurrent.ConcurrentHashMap;
 
-import net.pixelstatic.bossdash.entities.*;
-import net.pixelstatic.bossdash.systems.CollisionSystem;
-import net.pixelstatic.bossdash.systems.EntitySystem;
+import net.pixelstatic.plasmo.entities.*;
+import net.pixelstatic.plasmo.systems.CollisionSystem;
+import net.pixelstatic.plasmo.systems.EntitySystem;
 import net.pixelstatic.utils.graphics.Textures;
 
 import com.badlogic.gdx.ApplicationAdapter;
@@ -26,8 +26,8 @@ import com.bitfire.postprocessing.PostProcessor;
 import com.bitfire.postprocessing.effects.Bloom;
 import com.bitfire.utils.ShaderLoader;
 
-public class BossDash extends ApplicationAdapter{
-	public static BossDash i;
+public class Plasmo extends ApplicationAdapter{
+	public static Plasmo i;
 	public ConcurrentHashMap<Long, Entity> entities = new ConcurrentHashMap<Long, Entity>();
 	public Array<EntitySystem> systems = new Array<EntitySystem>();
 	public SpriteBatch batch;
@@ -48,6 +48,7 @@ public class BossDash extends ApplicationAdapter{
 	public int lastspawn = 0;
 	public ObjectMap<String, Sound> sounds = new ObjectMap<String, Sound>();
 	public ObjectMap<String, Integer> framesounds = new ObjectMap<String, Integer>();
+	public Array<Star> stars = new Array<Star>();
 	int escalation = 3000;
 	
 
@@ -60,6 +61,7 @@ public class BossDash extends ApplicationAdapter{
 		camera = new OrthographicCamera(Gdx.graphics.getWidth() / zoom, Gdx.graphics.getHeight() / zoom);
 		matrix = new Matrix4();
 		input = new Input();
+		addStars();
 		player = (Player)new Player().add();
 
 		systems.add(new CollisionSystem());
@@ -74,6 +76,11 @@ public class BossDash extends ApplicationAdapter{
 		loadSound("laser");
 		loadSound("laser2");
 		loadSound("wave");
+	}
+	
+	void addStars(){
+		for(int i = 0; i < 150; i ++)
+			stars.add((Star)new Star().set(MathUtils.random(-900, 900), MathUtils.random(-900, 900)));
 	}
 	
 	void loadSound(String name){
@@ -139,6 +146,11 @@ public class BossDash extends ApplicationAdapter{
 		batch.begin();
 
 		input.update();
+		
+		for(Star star : stars){
+			star.update();
+			star.draw(batch);
+		}
 
 		for(EntitySystem system : systems){
 			system.process(entities.values());

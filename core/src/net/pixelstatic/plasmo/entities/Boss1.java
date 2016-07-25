@@ -1,6 +1,6 @@
-package net.pixelstatic.bossdash.entities;
+package net.pixelstatic.plasmo.entities;
 
-import net.pixelstatic.bossdash.BossDash;
+import net.pixelstatic.plasmo.Plasmo;
 
 import com.badlogic.gdx.graphics.Color;
 
@@ -32,14 +32,14 @@ public class Boss1 extends Enemy{
 	
 	@Override
 	public void collided(Entity other){
-		BossDash.i.bloomtime = 2;
+		Plasmo.i.bloomtime = 2;
 		super.collided(other);
 	}
 
 	@Override
 	void death(){
-		BossDash.i.bloomtime = 20;
-		BossDash.i.shaketime = 10;
+		Plasmo.i.bloomtime = 20;
+		Plasmo.i.shaketime = 10;
 		for(int i = 0; i < 18; i ++ )
 			shoot(i*20);
 		remove();

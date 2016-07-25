@@ -1,4 +1,4 @@
-package net.pixelstatic.bossdash.entities;
+package net.pixelstatic.plasmo.entities;
 
 import net.pixelstatic.utils.graphics.Textures;
 

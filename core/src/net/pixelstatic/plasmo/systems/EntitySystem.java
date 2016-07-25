@@ -1,6 +1,6 @@
-package net.pixelstatic.bossdash.systems;
+package net.pixelstatic.plasmo.systems;
 
-import net.pixelstatic.bossdash.entities.Entity;
+import net.pixelstatic.plasmo.entities.Entity;
 
 public abstract class EntitySystem{
 	public abstract void process(Iterable<Entity> entities);

@@ -1,6 +1,6 @@
-package net.pixelstatic.bossdash.entities;
+package net.pixelstatic.plasmo.entities;
 
-import net.pixelstatic.bossdash.BossDash;
+import net.pixelstatic.plasmo.Plasmo;
 import net.pixelstatic.utils.graphics.Textures;
 
 import com.badlogic.gdx.graphics.Color;
@@ -30,11 +30,11 @@ public class Wave extends Entity{
 	@Override
 	public void update(){
 		if(explode)
-			for(Entity entity : BossDash.i.entities.values()){
+			for(Entity entity : Plasmo.i.entities.values()){
 				if(!(entity instanceof Bullet)) continue;
 				Bullet bullet = (Bullet)entity;
-				bullet.owner = BossDash.i.player;
-				bullet.color = BossDash.i.player.sprite.getColor();
+				bullet.owner = Plasmo.i.player;
+				bullet.color = Plasmo.i.player.sprite.getColor();
 				bullet.sprite.setColor(bullet.color);
 				bullet.sprite.setRotation(vector.set(bullet.x, bullet.y).sub(x,y).angle() - 90);
 			}

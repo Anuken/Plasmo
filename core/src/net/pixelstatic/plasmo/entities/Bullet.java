@@ -1,6 +1,6 @@
-package net.pixelstatic.bossdash.entities;
+package net.pixelstatic.plasmo.entities;
 
-import net.pixelstatic.bossdash.BossDash;
+import net.pixelstatic.plasmo.Plasmo;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
@@ -21,7 +21,7 @@ public class Bullet extends SpriteEntity implements Collidable{
 		this.color = color;
 		this.owner = owner;
 		
-		BossDash.i.playSound("laser2");
+		Plasmo.i.playSound("laser2");
 	}
 	
 	public Bullet setSpeed(float speed){

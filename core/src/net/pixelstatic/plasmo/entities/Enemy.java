@@ -1,6 +1,6 @@
-package net.pixelstatic.bossdash.entities;
+package net.pixelstatic.plasmo.entities;
 
-import net.pixelstatic.bossdash.BossDash;
+import net.pixelstatic.plasmo.Plasmo;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
@@ -28,7 +28,7 @@ public abstract class Enemy extends SpriteEntity implements Collidable{
 		}
 
 		if(playerDistance() > 300){
-			vector.set(BossDash.i.player.x, BossDash.i.player.y).sub(x, y).nor().setAngle(vector.angle()).scl(1);
+			vector.set(Plasmo.i.player.x, Plasmo.i.player.y).sub(x, y).nor().setAngle(vector.angle()).scl(1);
 			x += vector.x;
 			y += vector.y;
 		}else{
@@ -50,7 +50,7 @@ public abstract class Enemy extends SpriteEntity implements Collidable{
 	}
 
 	public float playerAngle(){
-		return vector.set(BossDash.i.player.x, BossDash.i.player.y).sub(x, y).angle() - 90;
+		return vector.set(Plasmo.i.player.x, Plasmo.i.player.y).sub(x, y).angle() - 90;
 	}
 
 	public void shoot(float angle){
@@ -74,8 +74,8 @@ public abstract class Enemy extends SpriteEntity implements Collidable{
 		ctime = bctime;
 		health -= ((Bullet)other).damage;
 		if(health <= 0){
-			BossDash.i.playSound("laser", 0.1f);
-			BossDash.i.player.addXP(xp);
+			Plasmo.i.playSound("laser", 0.1f);
+			Plasmo.i.player.addXP(xp);
 			new Wave(30, 4).setColor(color).set(this).add();
 			death();
 		}

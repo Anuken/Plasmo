@@ -1,6 +1,6 @@
-package net.pixelstatic.bossdash.entities;
+package net.pixelstatic.plasmo.entities;
 
-import net.pixelstatic.bossdash.BossDash;
+import net.pixelstatic.plasmo.Plasmo;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -41,7 +41,7 @@ public abstract class Entity{
 	}
 	
 	public float playerDistance(){
-		return Vector2.dst(x, y, BossDash.i.player.x, BossDash.i.player.y);	
+		return Vector2.dst(x, y, Plasmo.i.player.x, Plasmo.i.player.y);	
 	}
 	
 	public boolean loaded(){
@@ -59,12 +59,12 @@ public abstract class Entity{
 	}
 	
 	public Entity add(){
-		BossDash.i.entities.put(id, this);
+		Plasmo.i.entities.put(id, this);
 		return this;
 	}
 	
 	public void remove(){
-		BossDash.i.entities.remove(id);
+		Plasmo.i.entities.remove(id);
 	}
 
 }

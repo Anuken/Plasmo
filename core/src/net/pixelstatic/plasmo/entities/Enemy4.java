@@ -1,6 +1,6 @@
-package net.pixelstatic.bossdash.entities;
+package net.pixelstatic.plasmo.entities;
 
-import net.pixelstatic.bossdash.BossDash;
+import net.pixelstatic.plasmo.Plasmo;
 
 import com.badlogic.gdx.graphics.Color;
 
@@ -13,7 +13,7 @@ public class Enemy4 extends Enemy{
 	@Override
 	public void behavior(){
 		
-		vector.set(BossDash.i.player.x, BossDash.i.player.y).sub(x, y).nor().setAngle(vector.angle()).scl(1.7f);
+		vector.set(Plasmo.i.player.x, Plasmo.i.player.y).sub(x, y).nor().setAngle(vector.angle()).scl(1.7f);
 		
 		x += vector.x;
 		y += vector.y;
@@ -29,8 +29,8 @@ public class Enemy4 extends Enemy{
 
 	@Override
 	void death(){
-		BossDash.i.bloomtime = 6;
-		BossDash.i.shaketime = 1;
+		Plasmo.i.bloomtime = 6;
+		Plasmo.i.shaketime = 1;
 		bulletwave(16);
 		remove();
 	}

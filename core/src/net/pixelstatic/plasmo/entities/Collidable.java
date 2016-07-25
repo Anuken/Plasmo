@@ -1,4 +1,4 @@
-package net.pixelstatic.bossdash.entities;
+package net.pixelstatic.plasmo.entities;
 
 public interface Collidable{
 	public float hitboxSize();

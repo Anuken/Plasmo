@@ -1,6 +1,6 @@
-package net.pixelstatic.bossdash.entities;
+package net.pixelstatic.plasmo.entities;
 
-import net.pixelstatic.bossdash.BossDash;
+import net.pixelstatic.plasmo.Plasmo;
 import net.pixelstatic.utils.graphics.Hue;
 
 import com.badlogic.gdx.Gdx;
@@ -37,7 +37,7 @@ public class Player extends SpriteEntity implements Collidable{
 
 	@Override
 	public void update(){
-		Vector3 v = BossDash.i.camera.unproject(new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0));
+		Vector3 v = Plasmo.i.camera.unproject(new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0));
 
 		Vector2 v2 = new Vector2(v.x, v.y);
 		v2.sub(x, y);
@@ -75,8 +75,8 @@ public class Player extends SpriteEntity implements Collidable{
 
 		}
 
-		if(BossDash.i.hittime > 0){
-			sprite.setColor(Hue.blend(Color.RED, color, BossDash.i.hittime / 5f));
+		if(Plasmo.i.hittime > 0){
+			sprite.setColor(Hue.blend(Color.RED, color, Plasmo.i.hittime / 5f));
 		}else{
 			sprite.setColor(Hue.blend(new Color(1, 0.0f, 0.0f, 1f), color, (float)health / maxhealth));
 		}
@@ -91,21 +91,21 @@ public class Player extends SpriteEntity implements Collidable{
 	}
 
 	public void addXP(int axp){
-		if( !BossDash.i.entities.containsKey(id)) return;
+		if( !Plasmo.i.entities.containsKey(id)) return;
 		xp += axp;
 		if(xp >= xpperlevel){
 			level ++;
 			new Inwave(90, 4).setColor(Color.WHITE).set(x, y).add();
-			BossDash.i.bloomtime = 10;
+			Plasmo.i.bloomtime = 10;
 			xp = 0;
 		}
 	}
 
 	public void rightclick(){
 		if(wavetime <= 0){
-			BossDash.i.playSound("wave", 0.15f);
+			Plasmo.i.playSound("wave", 0.15f);
 			new Wave(true).set(x, y).add();
-			BossDash.i.bloomtime = 10;
+			Plasmo.i.bloomtime = 10;
 			wavetime = wavereload;
 		}
 	}
@@ -134,10 +134,10 @@ public class Player extends SpriteEntity implements Collidable{
 	public void collided(Entity other){
 
 		health -= ((Bullet)other).damage;
-		BossDash.i.hittime = 5;
+		Plasmo.i.hittime = 5;
 		if(health <= 0){
-			BossDash.i.dead = true;
-			BossDash.i.shaketime = 20;
+			Plasmo.i.dead = true;
+			Plasmo.i.shaketime = 20;
 			for(int i = 0;i < 90;i ++)
 				new Bullet(color, this, i * 4).setSpeed(5f).set(x, y).add();
 			remove();

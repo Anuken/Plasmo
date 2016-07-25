@@ -1,4 +1,4 @@
-package net.pixelstatic.bossdash;
+package net.pixelstatic.plasmo;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Buttons;
@@ -11,7 +11,7 @@ public class Input extends InputAdapter{
 	}
 	
 	public boolean touchDown (int screenX, int screenY, int pointer, int button) {
-		if(button == Buttons.RIGHT) BossDash.i.player.rightclick();
+		if(button == Buttons.RIGHT) Plasmo.i.player.rightclick();
 		return false;
 	}
 	

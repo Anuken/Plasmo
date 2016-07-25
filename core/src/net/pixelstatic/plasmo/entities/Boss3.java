@@ -1,6 +1,6 @@
-package net.pixelstatic.bossdash.entities;
+package net.pixelstatic.plasmo.entities;
 
-import net.pixelstatic.bossdash.BossDash;
+import net.pixelstatic.plasmo.Plasmo;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.MathUtils;
@@ -32,7 +32,7 @@ public class Boss3 extends Enemy{
 	
 	@Override
 	public void collided(Entity other){
-		BossDash.i.bloomtime = 2;
+		Plasmo.i.bloomtime = 2;
 		super.collided(other);
 	}
 
@@ -41,8 +41,8 @@ public class Boss3 extends Enemy{
 		for(int i = 0; i < 4; i ++)
 			new Enemy3().setRotation(i*4).set(x + MathUtils.random(-8, 8),  y + MathUtils.random(-8, 8)).add();
 		
-		BossDash.i.bloomtime = 10;
-		BossDash.i.shaketime = 10;
+		Plasmo.i.bloomtime = 10;
+		Plasmo.i.shaketime = 10;
 		for(int i = 0; i < 9; i ++ )
 			shoot(i*40);
 		remove();

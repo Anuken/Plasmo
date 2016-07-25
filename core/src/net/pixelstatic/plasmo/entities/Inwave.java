@@ -1,6 +1,6 @@
-package net.pixelstatic.bossdash.entities;
+package net.pixelstatic.plasmo.entities;
 
-import net.pixelstatic.bossdash.BossDash;
+import net.pixelstatic.plasmo.Plasmo;
 import net.pixelstatic.utils.graphics.Textures;
 
 import com.badlogic.gdx.graphics.Color;
@@ -15,7 +15,7 @@ public class Inwave extends Entity{
 	boolean linked = true;
 	
 	public Inwave(){
-		color.set(BossDash.i.player.color);
+		color.set(Plasmo.i.player.color);
 	}
 	
 	public Inwave(float size, float speed){
@@ -30,7 +30,7 @@ public class Inwave extends Entity{
 	
 	@Override
 	public void update(){
-		if(linked)set(BossDash.i.player);
+		if(linked)set(Plasmo.i.player);
 		size -= speed;
 		if(size <= 0) remove();
 	}
