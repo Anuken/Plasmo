@@ -7,8 +7,8 @@ gwt {
     minHeapSize="1G"
 
     src = files(file("src/")) // Needs to be in front of "modules" below.
-    modules 'net.pixelstatic.bossdash.GdxDefinition'
-    devModules 'net.pixelstatic.bossdash.GdxDefinitionSuperdev'
+    modules 'net.pixelstatic.plasmo.GdxDefinition'
+    devModules 'net.pixelstatic.plasmo.GdxDefinitionSuperdev'
     project.webAppDirName = 'webapp'
 
     compiler {
