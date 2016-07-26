@@ -1,5 +1,6 @@
 package net.pixelstatic.plasmo.systems;
 
+import net.pixelstatic.plasmo.Plasmo;
 import net.pixelstatic.plasmo.entities.Collidable;
 import net.pixelstatic.plasmo.entities.Entity;
 
@@ -14,7 +15,7 @@ public class CollisionSystem extends EntitySystem{
 		collided.clear();
 		
 		for(Entity entity : entities){
-			if(!(entity instanceof Collidable)) continue;
+			if(!(entity instanceof Collidable) || Plasmo.i.removingEntities.contains(entity)) continue;
 			if(!entity.loaded()) continue;
 			collided.add(entity.id);
 			Collidable a = (Collidable)entity;

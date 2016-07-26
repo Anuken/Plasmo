@@ -59,12 +59,12 @@ public abstract class Entity{
 	}
 	
 	public Entity add(){
-		Plasmo.i.entities.put(id, this);
+		Plasmo.i.addingEntities.add(this);
 		return this;
 	}
 	
 	public void remove(){
-		Plasmo.i.entities.remove(id);
+		Plasmo.i.removingEntities.add(this);
 	}
 
 }

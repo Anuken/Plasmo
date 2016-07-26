@@ -1,10 +1,11 @@
 package net.pixelstatic.plasmo;
 
+import java.util.HashMap;
+
 import net.pixelstatic.gdxutils.Textures;
 import net.pixelstatic.plasmo.entities.*;
 import net.pixelstatic.plasmo.systems.CollisionSystem;
 import net.pixelstatic.plasmo.systems.EntitySystem;
-import net.pixelstatic.plasmo.util.ConcurrentHashMap;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
@@ -18,9 +19,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Rectangle;
-import com.badlogic.gdx.utils.Align;
-import com.badlogic.gdx.utils.Array;
-import com.badlogic.gdx.utils.ObjectMap;
+import com.badlogic.gdx.utils.*;
 import com.badlogic.gdx.utils.reflect.ClassReflection;
 import com.bitfire.postprocessing.PostProcessor;
 import com.bitfire.postprocessing.effects.Bloom;
@@ -28,7 +27,9 @@ import com.bitfire.utils.ShaderLoader;
 
 public class Plasmo extends ApplicationAdapter{
 	public static Plasmo i;
-	public ConcurrentHashMap<Long, Entity> entities = new ConcurrentHashMap<Long, Entity>();
+	public HashMap<Long, Entity> entities = new HashMap<Long, Entity>();
+	public ObjectSet<Entity> removingEntities = new ObjectSet<Entity>();
+	public ObjectSet<Entity> addingEntities = new ObjectSet<Entity>();
 	public Array<EntitySystem> systems = new Array<EntitySystem>();
 	public SpriteBatch batch;
 	public Player player;
@@ -150,11 +151,21 @@ public class Plasmo extends ApplicationAdapter{
 		for(EntitySystem system : systems){
 			system.process(entities.values());
 		}
+		
+		for(Entity entity : removingEntities)
+			entities.remove(entity.id);
+		
+		removingEntities.clear();
 
 		for(Entity entity : entities.values()){
 			if(entity.loaded())
 			entity.draw(batch);
 		}
+		
+		for(Entity entity :addingEntities)
+			entities.put(entity.id, entity);
+		
+		addingEntities.clear();
 
 		batch.end();
 		processor.render();
@@ -220,7 +231,7 @@ public class Plasmo extends ApplicationAdapter{
 		font.setColor(Color.WHITE);
 		
 		if(!started){
-			font.draw(batch,  "Controls: WASD to move, click to shoot. Rightclick to deflect bullets."
+			font.draw(batch,  "Controls: WASD to move, click to shoot. Space to deflect bullets."
 					+ "\nThe more enemies you destroy, the more powerful you become."
 					+ "\n[ENTER] to start.",  0, Gdx.graphics.getHeight()/2, Gdx.graphics.getWidth(), Align.center, true);
 			
