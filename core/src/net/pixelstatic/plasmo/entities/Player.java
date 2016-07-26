@@ -1,7 +1,7 @@
 package net.pixelstatic.plasmo.entities;
 
+import net.pixelstatic.gdxutils.Hue;
 import net.pixelstatic.plasmo.Plasmo;
-import net.pixelstatic.utils.graphics.Hue;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Buttons;

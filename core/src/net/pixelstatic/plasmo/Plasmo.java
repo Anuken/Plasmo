@@ -1,11 +1,10 @@
 package net.pixelstatic.plasmo;
 
-import java.util.concurrent.ConcurrentHashMap;
-
+import net.pixelstatic.gdxutils.Textures;
 import net.pixelstatic.plasmo.entities.*;
 import net.pixelstatic.plasmo.systems.CollisionSystem;
 import net.pixelstatic.plasmo.systems.EntitySystem;
-import net.pixelstatic.utils.graphics.Textures;
+import net.pixelstatic.plasmo.util.ConcurrentHashMap;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
@@ -22,6 +21,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.ObjectMap;
+import com.badlogic.gdx.utils.reflect.ClassReflection;
 import com.bitfire.postprocessing.PostProcessor;
 import com.bitfire.postprocessing.effects.Bloom;
 import com.bitfire.utils.ShaderLoader;
@@ -181,6 +181,8 @@ public class Plasmo extends ApplicationAdapter{
 			new Boss4().add();
 			lastspawn = (int)(player.lifetime() / 4000);
 		}
+		
+		
 	}
 	
 	void spawnGroup(Class<? extends Enemy> c, double chance, int amount){
@@ -189,7 +191,7 @@ public class Plasmo extends ApplicationAdapter{
 			if(chance(chance)){
 				float x = player.x + MathUtils.random( -150, 150), y = player.y + MathUtils.random( -150, 150);
 				for(int i = 0; i < amount; i ++)
-				c.newInstance().set(x + MathUtils.random( -15, 15), y + MathUtils.random( -15, 15)).spawn();
+				ClassReflection.newInstance(c).set(x + MathUtils.random( -15, 15), y + MathUtils.random( -15, 15)).spawn();
 			}
 		}catch(Exception e){
 			e.printStackTrace();
@@ -199,7 +201,7 @@ public class Plasmo extends ApplicationAdapter{
 	void spawn(Class<? extends Enemy> c, double chance){
 		if(!checkSpawn()) return;
 		try{
-			if(chance(chance)) c.newInstance().set(player.x + MathUtils.random( -150, 100), player.y + MathUtils.random( -150, 100)).spawn();
+			if(chance(chance)) ClassReflection.newInstance(c).set(player.x + MathUtils.random( -150, 100), player.y + MathUtils.random( -150, 100)).spawn();
 		}catch(Exception e){
 			e.printStackTrace();
 		}

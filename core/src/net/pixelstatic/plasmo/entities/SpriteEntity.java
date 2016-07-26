@@ -1,6 +1,7 @@
 package net.pixelstatic.plasmo.entities;
 
-import net.pixelstatic.utils.graphics.Textures;
+
+import net.pixelstatic.gdxutils.Textures;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;

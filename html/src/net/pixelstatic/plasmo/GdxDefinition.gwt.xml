@@ -4,7 +4,10 @@
 	<inherits name='com.badlogic.gdx.backends.gdx_backends_gwt' />
 
 	<inherits name='Plasmo' />
+	<inherits name='Utils'/>
+	<inherits name='Postprocessing'/>
 	<entry-point class='net.pixelstatic.plasmo.client.HtmlLauncher' />
+	<extend-configuration-property name="gdx.reflect.include" value="net.pixelstatic.plasmo.entities" />
 	
 	<set-configuration-property name="gdx.assetpath" value="../android/assets" />
 </module>
