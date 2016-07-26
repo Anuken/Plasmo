@@ -29,8 +29,8 @@ public abstract class Enemy extends SpriteEntity implements Collidable{
 
 		if(playerDistance() > 300){
 			vector.set(Plasmo.i.player.x, Plasmo.i.player.y).sub(x, y).nor().setAngle(vector.angle()).scl(1);
-			x += vector.x;
-			y += vector.y;
+		//	x += vector.x;
+		//	y += vector.y;
 		}else{
 			behavior();
 		}

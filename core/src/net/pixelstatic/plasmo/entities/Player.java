@@ -17,8 +17,8 @@ public class Player extends SpriteEntity implements Collidable{
 	float wavereload = 200;
 	float wavetime = 0;
 	float dashtime = 0;
-	public final int maxhealth = 40;
-	public int health = 40;
+	public final int maxhealth = 400;
+	public int health = maxhealth;
 	int reload = 2;
 	int reloadtime = 0;
 	int xp;

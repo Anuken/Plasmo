@@ -4,22 +4,27 @@ import net.pixelstatic.plasmo.entities.Collidable;
 import net.pixelstatic.plasmo.entities.Entity;
 
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.utils.ObjectSet;
 
 public class CollisionSystem extends EntitySystem{
-
+	ObjectSet<Long> collided = new ObjectSet<Long>();
+	
 	@Override
 	public void process(Iterable<Entity> entities){
+		collided.clear();
+		
 		for(Entity entity : entities){
 			if(!(entity instanceof Collidable)) continue;
 			if(!entity.loaded()) continue;
+			collided.add(entity.id);
 			Collidable a = (Collidable)entity;
 			
 			Rectangle.tmp.setSize(a.hitboxSize());
 			
-			Rectangle.tmp.setPosition(entity.x, entity.y);
+			Rectangle.tmp.setCenter(entity.x, entity.y);
 			
 			for(Entity other : entities){
-				if(!(other instanceof Collidable) || other == entity) continue;
+				if(!(other instanceof Collidable) || other == entity || collided.contains(other.id)) continue;
 				
 				Collidable b = (Collidable)other;
 				if(!a.collides(other) || !b.collides(entity)) continue;
@@ -27,7 +32,7 @@ public class CollisionSystem extends EntitySystem{
 				
 				Rectangle.tmp2.setSize(b.hitboxSize());
 				
-				Rectangle.tmp2.setPosition(other.x, other.y);
+				Rectangle.tmp2.setCenter(other.x, other.y);
 				
 				if(Rectangle.tmp.overlaps(Rectangle.tmp2)){
 					a.collided(other);
@@ -35,6 +40,7 @@ public class CollisionSystem extends EntitySystem{
 				}
 					
 			}
+			
 		}
 	}
 
