@@ -32,7 +32,7 @@ public class Boss3 extends Enemy{
 	
 	@Override
 	public void collided(Entity other){
-		Plasmo.i.bloomtime = 2;
+		Plasmo.i.bloom(3);
 		super.collided(other);
 	}
 
@@ -41,8 +41,7 @@ public class Boss3 extends Enemy{
 		for(int i = 0; i < 4; i ++)
 			new Enemy3().setRotation(i*4).set(x + MathUtils.random(-8, 8),  y + MathUtils.random(-8, 8)).add();
 		
-		Plasmo.i.bloomtime = 10;
-		Plasmo.i.shaketime = 10;
+		Plasmo.i.effect(10, 20);
 		for(int i = 0; i < 9; i ++ )
 			shoot(i*40);
 		remove();

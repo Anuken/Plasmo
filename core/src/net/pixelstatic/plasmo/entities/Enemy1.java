@@ -28,17 +28,10 @@ public class Enemy1 extends Enemy{
 	public float hitboxSize(){
 		return 8;
 	}
-	
-	@Override
-	public void collided(Entity other){
-		Plasmo.i.bloomtime = 2;
-		super.collided(other);
-	}
 
 	@Override
 	void death(){
-		Plasmo.i.bloomtime = 5;
-		Plasmo.i.shaketime = 2;
+		Plasmo.i.effect(2, 5);
 		for(int i = 0; i < 4; i ++ )
 			shoot(i*90);
 		remove();

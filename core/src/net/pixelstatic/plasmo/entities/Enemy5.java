@@ -36,7 +36,7 @@ public class Enemy5 extends Enemy{
 
 	@Override
 	void death(){
-		Plasmo.i.bloomtime = 4;
+		Plasmo.i.effect(0, 5);
 		bulletwave(4);
 		remove();
 	}

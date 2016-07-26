@@ -73,6 +73,7 @@ public abstract class Enemy extends SpriteEntity implements Collidable{
 	public void collided(Entity other){
 		ctime = bctime;
 		health -= ((Bullet)other).damage;
+		Plasmo.i.bloom(1);
 		if(health <= 0){
 			Plasmo.i.playSound("laser", 0.1f);
 			Plasmo.i.player.addXP(xp);

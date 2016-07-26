@@ -35,7 +35,7 @@ public class Enemy3 extends Enemy{
 
 	@Override
 	void death(){
-		Plasmo.i.bloomtime = 4;
+		Plasmo.i.effect(0, 7);
 		for(int i = 0; i < 3; i ++ )
 			shoot(i*360/3);
 		remove();

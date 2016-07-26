@@ -37,11 +37,10 @@ public class Plasmo extends ApplicationAdapter{
 	public int zoom = 5;
 	public Matrix4 matrix;
 	public PostProcessor processor;
-	public Bloom bloom;
-	public float shaketime = 0;
-	public float shakeintensity = 7;
-	public float bloomtime = 0;
-	public float hittime;
+	private Bloom bloom;
+	private float shaketime = 0;
+	private float shakeintensity = 7;
+	private float bloomtime = 0;
 	public boolean dead = false;
 	public boolean started = false;
 	public BitmapFont font;
@@ -114,10 +113,6 @@ public class Plasmo extends ApplicationAdapter{
 		camera.position.set(player.x, player.y, 0);
 
 		if( !dead){
-
-			if(hittime > 0){
-				hittime -= Gdx.graphics.getDeltaTime() * 60f;
-			}
 
 			float base = 1f;
 
@@ -219,7 +214,7 @@ public class Plasmo extends ApplicationAdapter{
 	}
 
 	void drawGUI(){
-		font.setColor(Color.CORAL);
+		font.setColor(Color.WHITE);
 		
 		if(!started){
 			font.draw(batch,  "Controls: WASD to move, click to shoot. Rightclick to deflect bullets."
@@ -247,6 +242,30 @@ public class Plasmo extends ApplicationAdapter{
 				player.add();
 				
 			}
+		}
+	}
+	
+	public void effect(float shake, float bloom){
+		shake(shake);
+		bloom(bloom);
+	}
+	
+	public void shake(float amount){
+		if(shaketime <= 0){
+			shaketime = amount;
+		}else{
+			shaketime += amount;
+		}
+	}
+	
+	public void bloom(float amount){
+		if(bloomtime <= 0){
+			bloomtime = amount;
+		}else{
+			if(amount <= 3 && bloomtime > 10) return;
+			bloomtime += amount;
+			
+			if(bloomtime > 30) bloomtime = 30;
 		}
 	}
 

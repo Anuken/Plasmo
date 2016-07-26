@@ -32,14 +32,13 @@ public class Boss1 extends Enemy{
 	
 	@Override
 	public void collided(Entity other){
-		Plasmo.i.bloomtime = 2;
+		Plasmo.i.bloom(2);
 		super.collided(other);
 	}
 
 	@Override
 	void death(){
-		Plasmo.i.bloomtime = 20;
-		Plasmo.i.shaketime = 10;
+		Plasmo.i.effect(10, 20);
 		for(int i = 0; i < 18; i ++ )
 			shoot(i*20);
 		remove();

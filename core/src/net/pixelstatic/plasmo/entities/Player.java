@@ -25,6 +25,7 @@ public class Player extends SpriteEntity implements Collidable{
 	int level;
 	int xpperlevel = 20;
 	float maxrange = 1000;
+	float hittime;
 
 	{
 		color = Color.valueOf("9bffd8");
@@ -74,9 +75,12 @@ public class Player extends SpriteEntity implements Collidable{
 			}
 
 		}
+		
+		
 
-		if(Plasmo.i.hittime > 0){
-			sprite.setColor(Hue.blend(Color.RED, color, Plasmo.i.hittime / 5f));
+		if(hittime > 0){
+			sprite.setColor(Hue.blend(Color.RED, color, hittime / 5f));
+			hittime -= Gdx.graphics.getDeltaTime()*60f;
 		}else{
 			sprite.setColor(Hue.blend(new Color(1, 0.0f, 0.0f, 1f), color, (float)health / maxhealth));
 		}
@@ -96,7 +100,7 @@ public class Player extends SpriteEntity implements Collidable{
 		if(xp >= xpperlevel){
 			level ++;
 			new Inwave(90, 4).setColor(Color.WHITE).set(x, y).add();
-			Plasmo.i.bloomtime = 10;
+			Plasmo.i.bloom(10);
 			xp = 0;
 		}
 	}
@@ -105,7 +109,7 @@ public class Player extends SpriteEntity implements Collidable{
 		if(wavetime <= 0){
 			Plasmo.i.playSound("wave", 0.15f);
 			new Wave(true).set(x, y).add();
-			Plasmo.i.bloomtime = 10;
+			Plasmo.i.bloom(13);
 			wavetime = wavereload;
 		}
 	}
@@ -134,10 +138,10 @@ public class Player extends SpriteEntity implements Collidable{
 	public void collided(Entity other){
 
 		health -= ((Bullet)other).damage;
-		Plasmo.i.hittime = 5;
+		hittime = 5;
 		if(health <= 0){
 			Plasmo.i.dead = true;
-			Plasmo.i.shaketime = 20;
+			Plasmo.i.shake(20);
 			for(int i = 0;i < 90;i ++)
 				new Bullet(color, this, i * 4).setSpeed(5f).set(x, y).add();
 			remove();
