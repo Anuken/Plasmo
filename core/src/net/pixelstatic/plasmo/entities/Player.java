@@ -76,7 +76,14 @@ public class Player extends SpriteEntity implements Collidable{
 
 		}
 		
-		
+		if(Gdx.input.isKeyJustPressed(Keys.SPACE)){
+			if(wavetime <= 0){
+				Plasmo.i.playSound("wave", 0.15f);
+				new Wave(true).set(x, y).add();
+				Plasmo.i.bloom(13);
+				wavetime = wavereload;
+			}
+		}
 
 		if(hittime > 0){
 			sprite.setColor(Hue.blend(Color.RED, color, hittime / 5f));
@@ -104,16 +111,6 @@ public class Player extends SpriteEntity implements Collidable{
 			xp = 0;
 		}
 	}
-
-	public void rightclick(){
-		if(wavetime <= 0){
-			Plasmo.i.playSound("wave", 0.15f);
-			new Wave(true).set(x, y).add();
-			Plasmo.i.bloom(13);
-			wavetime = wavereload;
-		}
-	}
-
 	boolean tryShoot(){
 		if(reloadtime > reload){
 			reloadtime = 0;

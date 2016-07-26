@@ -216,6 +216,7 @@ public class Plasmo extends ApplicationAdapter{
 	}
 
 	void drawGUI(){
+		batch.setColor(Color.WHITE);
 		font.setColor(Color.WHITE);
 		
 		if(!started){
