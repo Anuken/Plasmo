@@ -28,7 +28,7 @@ public class CollisionSystem extends EntitySystem{
 				if(!(other instanceof Collidable) || other == entity || collided.contains(other.id)) continue;
 				
 				Collidable b = (Collidable)other;
-				if(!a.collides(other) || !b.collides(entity)) continue;
+				if(!a.collides(other) || !b.collides(entity) ||  Plasmo.i.removingEntities.contains(other)) continue;
 				
 				
 				Rectangle.tmp2.setSize(b.hitboxSize());

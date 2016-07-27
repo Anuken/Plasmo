@@ -25,19 +25,20 @@ public class Wave extends Entity{
 	
 	public Wave(boolean explode){
 		this.explode = explode;
-	}
-	
-	@Override
-	public void update(){
 		if(explode)
 			for(Entity entity : Plasmo.i.entities.values()){
-				if(!(entity instanceof Bullet)) continue;
+				if(!(entity instanceof Bullet) || entity.playerDistance() > 210) continue;
 				Bullet bullet = (Bullet)entity;
 				bullet.owner = Plasmo.i.player;
 				bullet.color = Plasmo.i.player.sprite.getColor();
 				bullet.sprite.setColor(bullet.color);
 				bullet.sprite.setRotation(vector.set(bullet.x, bullet.y).sub(x,y).angle() - 90);
 			}
+	}
+	
+	@Override
+	public void update(){
+		
 		size += speed;
 		if(size > maxsize) remove();
 	}

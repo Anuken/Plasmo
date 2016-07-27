@@ -96,6 +96,7 @@ public class Plasmo extends ApplicationAdapter{
 		if(framesounds.get(name) > 1) return;
 		sounds.get(name).play(volume);
 		framesounds.put(name, framesounds.get(name) + 1);
+		
 	}
 
 	@Override
@@ -140,8 +141,6 @@ public class Plasmo extends ApplicationAdapter{
 
 		processor.capture();
 		batch.begin();
-
-		input.update();
 		
 		for(Star star : stars){
 			star.update();
@@ -169,7 +168,9 @@ public class Plasmo extends ApplicationAdapter{
 
 		batch.end();
 		processor.render();
-
+		
+		input.update();
+		
 		batch.setProjectionMatrix(matrix);
 
 		batch.begin();
@@ -231,11 +232,11 @@ public class Plasmo extends ApplicationAdapter{
 		font.setColor(Color.WHITE);
 		
 		if(!started){
-			font.draw(batch,  "Controls: WASD to move, click to shoot. Space to deflect bullets."
+			font.draw(batch,  "Controls: WASD to move, click to shoot. [" + Keys.toString(Input.ABILITY_KEY)+"] to deflect bullets."
 					+ "\nThe more enemies you destroy, the more powerful you become."
-					+ "\n[ENTER] to start.",  0, Gdx.graphics.getHeight()/2, Gdx.graphics.getWidth(), Align.center, true);
+					+ "\n["+Keys.toString(Input.START_KEY)+"] to start.",  0, Gdx.graphics.getHeight()/2, Gdx.graphics.getWidth(), Align.center, true);
 			
-			if(Gdx.input.isKeyPressed(Keys.ENTER)){
+			if(Gdx.input.isKeyPressed(Input.START_KEY)){
 				started = true;
 			}
 			
@@ -246,10 +247,10 @@ public class Plasmo extends ApplicationAdapter{
 			batch.setColor(new Color(0,0,0,0.3f));
 			batch.draw(Textures.get("white"), 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 			font.draw(batch,  "You have died. Score: "+ player.totalXP()
-					+ "\n[ENTER] to restart.",  0, Gdx.graphics.getHeight()/2, Gdx.graphics.getWidth(), Align.center, true);
+					+ "\n["+Keys.toString(Input.START_KEY)+"] to restart.",  0, Gdx.graphics.getHeight()/2, Gdx.graphics.getWidth(), Align.center, true);
 			batch.setColor(Color.WHITE);
 			
-			if(Gdx.input.isKeyPressed(Keys.ENTER)){
+			if(Gdx.input.isKeyPressed(Input.START_KEY)){
 				dead = false;
 				player = new Player();
 				entities.clear();

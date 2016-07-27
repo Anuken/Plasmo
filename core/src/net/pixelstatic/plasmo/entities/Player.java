@@ -1,6 +1,7 @@
 package net.pixelstatic.plasmo.entities;
 
 import net.pixelstatic.gdxutils.Hue;
+import net.pixelstatic.plasmo.Input;
 import net.pixelstatic.plasmo.Plasmo;
 
 import com.badlogic.gdx.Gdx;
@@ -76,7 +77,7 @@ public class Player extends SpriteEntity implements Collidable{
 
 		}
 		
-		if(Gdx.input.isKeyJustPressed(Keys.SPACE)){
+		if(Gdx.input.isKeyJustPressed(Input.ABILITY_KEY)){
 			if(wavetime <= 0){
 				Plasmo.i.playSound("wave", 0.15f);
 				new Wave(true).set(x, y).add();
