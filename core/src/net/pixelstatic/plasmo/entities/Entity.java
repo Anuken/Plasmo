@@ -2,6 +2,7 @@ package net.pixelstatic.plasmo.entities;
 
 import net.pixelstatic.plasmo.Plasmo;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
@@ -56,6 +57,19 @@ public abstract class Entity{
 		if(playerDistance() < 50) return this;
 		new Inwave(20, 2).unlink().setColor(color).set(x, y).add();
 		return add();
+	}
+	
+	public float delta(){
+		return Gdx.graphics.getDeltaTime()*60f;
+	}
+	
+	public void move(float x, float y){
+		this.x += x*delta();
+		this.y += y*delta();
+	}
+	
+	public void move(Vector2 v){
+		move(v.x, v.y);
 	}
 	
 	public Entity add(){

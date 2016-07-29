@@ -15,8 +15,7 @@ public class Enemy4 extends Enemy{
 		
 		vector.set(Plasmo.i.player.x, Plasmo.i.player.y).sub(x, y).nor().setAngle(vector.angle()).scl(1.7f);
 		
-		x += vector.x;
-		y += vector.y;
+		move(vector);
 		
 		if(playerDistance() < 20)
 			death();

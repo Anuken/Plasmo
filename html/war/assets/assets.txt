@@ -1,5 +1,5 @@
 d:assets:0:application/unknown
-i:font.png:2860:image/png
+i:font.png:14220:image/png
 d:textures:0:application/unknown
 i:textures/enemy4.png:180:image/png
 i:textures/wave.png:225:image/png
@@ -16,7 +16,7 @@ i:textures/shield.png:225:image/png
 i:textures/boss2.png:257:image/png
 i:textures/enemy5.png:199:image/png
 i:textures/boss1.png:274:image/png
-t:font.fnt:11415:application/unknown
+t:font.fnt:23954:application/unknown
 d:sounds:0:application/unknown
 a:sounds/laser.wav:27910:audio/x-wav
 a:sounds/lser.wav:262362:audio/x-wav

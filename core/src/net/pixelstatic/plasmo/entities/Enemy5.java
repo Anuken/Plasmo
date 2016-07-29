@@ -17,10 +17,9 @@ public class Enemy5 extends Enemy{
 		
 		vector.set(Plasmo.i.player.x, Plasmo.i.player.y).sub(x, y).nor().setAngle(vector.angle() + MathUtils.random(-5, 5)).scl(0.8f);
 		
-		x += vector.x;
-		y += vector.y;
+		move(vector);
 		
-		sprite.rotate(3);
+		sprite.rotate(3*delta());
 		
 		if(tryShoot()){
 			for(int i = 0; i < 3; i ++)

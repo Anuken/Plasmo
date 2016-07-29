@@ -15,9 +15,7 @@ public class Enemy1 extends Enemy{
 	
 	@Override
 	public void behavior(){
-		
-		x += MathUtils.random(-1, 1);
-		y += MathUtils.random(-1, 1);
+		move(MathUtils.random(-1, 1), MathUtils.random(-1, 1));
 		
 		if(tryShoot()){
 			shoot(playerAngle() + MathUtils.random(-10, 10));

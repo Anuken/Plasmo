@@ -17,7 +17,7 @@ public class Boss3 extends Enemy{
 	@Override
 	public void behavior(){
 		
-		sprite.rotate(4f);
+		sprite.rotate(4f*delta());
 		
 		if(tryShoot()){
 			for(int i = 0; i < 4; i ++)

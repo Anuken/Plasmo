@@ -2,7 +2,6 @@ package net.pixelstatic.plasmo.entities;
 
 import net.pixelstatic.plasmo.Plasmo;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.Vector2;
 
@@ -31,15 +30,14 @@ public class Bullet extends SpriteEntity implements Collidable{
 	
 	@Override
 	public void update(){
-		life += Gdx.graphics.getDeltaTime()*60f;
+		life += delta();
 		if(life > lifetime){
 			remove();
 			return;
 		}
 		vector.set(0, speed);
 		vector.setAngle(sprite.getRotation() + 90);
-		x += vector.x;
-		y += vector.y;
+		move(vector);
 	}
 
 	@Override

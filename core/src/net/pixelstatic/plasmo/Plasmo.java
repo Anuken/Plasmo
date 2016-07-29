@@ -57,6 +57,7 @@ public class Plasmo extends ApplicationAdapter{
 		i = this;
 		Textures.load("textures/");
 		font = new BitmapFont(Gdx.files.internal("font.fnt"));
+		font.getData().markupEnabled = true;
 		batch = new SpriteBatch();
 		camera = new OrthographicCamera(Gdx.graphics.getWidth() / zoom, Gdx.graphics.getHeight() / zoom);
 		matrix = new Matrix4();
@@ -94,7 +95,7 @@ public class Plasmo extends ApplicationAdapter{
 	
 	public void playSound(String name, float volume){
 		if(framesounds.get(name) > 1) return;
-		sounds.get(name).play(volume);
+		sounds.get(name).play(volume, 0.7f, 0f);
 		framesounds.put(name, framesounds.get(name) + 1);
 		
 	}
@@ -224,7 +225,7 @@ public class Plasmo extends ApplicationAdapter{
 	}
 
 	boolean chance(double d){
-		return Math.random() < d * (1f + player.lifetime() / escalation);
+		return Math.random() < d * (1f + player.lifetime() / escalation)*(Gdx.graphics.getDeltaTime()*60f);
 	}
 
 	void drawGUI(){
@@ -232,9 +233,9 @@ public class Plasmo extends ApplicationAdapter{
 		font.setColor(Color.WHITE);
 		
 		if(!started){
-			font.draw(batch,  "Controls: WASD to move, click to shoot. [" + Keys.toString(Input.ABILITY_KEY)+"] to deflect bullets."
-					+ "\nThe more enemies you destroy, the more powerful you become."
-					+ "\n["+Keys.toString(Input.START_KEY)+"] to start.",  0, Gdx.graphics.getHeight()/2, Gdx.graphics.getWidth(), Align.center, true);
+			String ncolor = "PURPLE";
+			font.draw(batch,  "[CYAN]Controls: [CORAL][WASD]["+ncolor+"]to move, click to shoot. [CORAL][" + Keys.toString(Input.ABILITY_KEY)+"]["+ncolor+"]to deflect bullets."
+					+ "\n[ROYAL]Press [CORAL]["+Keys.toString(Input.START_KEY)+"][ROYAL]to start.",  0, Gdx.graphics.getHeight()/2, Gdx.graphics.getWidth(), Align.center, true);
 			
 			if(Gdx.input.isKeyPressed(Input.START_KEY)){
 				started = true;
@@ -246,8 +247,8 @@ public class Plasmo extends ApplicationAdapter{
 		if(dead){
 			batch.setColor(new Color(0,0,0,0.3f));
 			batch.draw(Textures.get("white"), 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-			font.draw(batch,  "You have died. Score: "+ player.totalXP()
-					+ "\n["+Keys.toString(Input.START_KEY)+"] to restart.",  0, Gdx.graphics.getHeight()/2, Gdx.graphics.getWidth(), Align.center, true);
+			font.draw(batch,  "[RED]Game over.\n[ROYAL]Score: [PURPLE]"+ player.totalXP()
+					+ "\n[CORAL]["+Keys.toString(Input.START_KEY)+"] [CYAN]to restart.",  0, Gdx.graphics.getHeight()/2, Gdx.graphics.getWidth(), Align.center, true);
 			batch.setColor(Color.WHITE);
 			
 			if(Gdx.input.isKeyPressed(Input.START_KEY)){
@@ -258,6 +259,8 @@ public class Plasmo extends ApplicationAdapter{
 				
 			}
 		}
+		
+		font.draw(batch, "[PURPLE]FPS: [ROYAL]" + Gdx.graphics.getFramesPerSecond(), 0, Gdx.graphics.getHeight());
 	}
 	
 	public void effect(float shake, float bloom){

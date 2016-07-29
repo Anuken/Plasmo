@@ -20,8 +20,8 @@ public class Player extends SpriteEntity implements Collidable{
 	float dashtime = 0;
 	public final int maxhealth = 40;
 	public int health = maxhealth;
-	int reload = 2;
-	int reloadtime = 0;
+	float reload = 2;
+	float reloadtime = 0;
 	int xp;
 	int level;
 	int xpperlevel = 20;
@@ -45,6 +45,8 @@ public class Player extends SpriteEntity implements Collidable{
 		v2.sub(x, y);
 		
 		sprite.setRotation(v2.angle() - 90);
+		
+		float speed = this.speed*delta();
 
 		if(Gdx.input.isKeyPressed(Keys.W)) y += speed;
 		if(Gdx.input.isKeyPressed(Keys.A)) x -= speed;

@@ -17,8 +17,7 @@ public class Enemy3 extends Enemy{
 		
 		vector.set(Plasmo.i.player.x, Plasmo.i.player.y).sub(x, y).nor().setAngle(vector.angle() + MathUtils.random(-20, 20)).scl(1);
 		
-		x += vector.x;
-		y += vector.y;
+		move(vector);
 		
 		sprite.setRotation(playerAngle()-90+45 + MathUtils.random(-20, 20));
 		

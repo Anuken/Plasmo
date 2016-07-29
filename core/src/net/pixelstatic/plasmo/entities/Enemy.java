@@ -10,8 +10,8 @@ public abstract class Enemy extends SpriteEntity implements Collidable{
 	static Vector2 vector = new Vector2();
 	int maxhealth = 100;
 	int health = maxhealth;
-	int reload = 10;
-	int reloadtime = 0;
+	float reload = 10;
+	float reloadtime = 0;
 	int xp = 1;
 	final float bctime = 3;
 	float ctime = 0;
@@ -22,7 +22,7 @@ public abstract class Enemy extends SpriteEntity implements Collidable{
 			float s = 1f - (ctime / bctime) * 0.5f;
 			sprite.setColor(new Color(1, color.g * s, color.b * s, 1));
 			//sprite.setColor(new Color(1,0.5f + 0.5f - (ctime/bctime)*0.5f,0.5f + 0.5f - (ctime/bctime)*0.5f,1));
-			ctime -= Gdx.graphics.getDeltaTime() * 60f;
+			ctime -= delta();
 		}else{
 			sprite.setColor(color);
 		}

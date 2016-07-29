@@ -17,7 +17,7 @@ public class Boss4 extends Enemy{
 	@Override
 	public void behavior(){
 		
-		sprite.rotate(5);
+		sprite.rotate(5*delta());
 		
 		if(tryShoot()){
 			//shoot(playerAngle() + (float)Math.sin(lifetime()/20)*40);
@@ -27,7 +27,7 @@ public class Boss4 extends Enemy{
 				shoot(sprite.getRotation() + i*45);
 		}
 		
-		if(Math.random() < 0.006)
+		if(Math.random() < 0.006*delta())
 			new Enemy5().set(x + MathUtils.random(-32, 32), y + MathUtils.random(-32, 32)).add();
 	}
 

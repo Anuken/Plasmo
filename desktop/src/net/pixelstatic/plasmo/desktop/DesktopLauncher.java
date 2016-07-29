@@ -12,6 +12,9 @@ public class DesktopLauncher {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
 		config.width = Toolkit.getDefaultToolkit().getScreenSize().width;
 		config.height = Toolkit.getDefaultToolkit().getScreenSize().height;
+		//config.vSyncEnabled = false;
+		//config.backgroundFPS = 0;
+		//config.foregroundFPS = 0;
 		new LwjglApplication(new Plasmo(), config);
 	}
 }

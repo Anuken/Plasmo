@@ -17,10 +17,9 @@ public class Boss2 extends Enemy{
 	@Override
 	public void behavior(){
 		
-		sprite.rotate(1f);
+		sprite.rotate(1f*delta());
 		
-		x += Math.sin(lifetime()/60f + Math.PI/2);
-		y += Math.sin(lifetime()/30f)/2f;
+		move((float)Math.sin(lifetime()/60f + Math.PI/2), (float)Math.sin(lifetime()/30f)/2f);
 		
 		if(tryShoot()){
 			shoot(playerAngle() + (float)Math.sin(lifetime()/30)*360f);

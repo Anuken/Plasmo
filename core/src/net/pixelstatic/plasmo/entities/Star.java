@@ -11,7 +11,7 @@ public class Star extends SpriteEntity{
 	
 	@Override
 	public void update(){
-		sprite.rotate(0.1f);
+		sprite.rotate(0.1f*delta());
 	}
 
 }
